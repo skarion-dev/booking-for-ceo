@@ -19,7 +19,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "Abdullah Al Saki | Founder & Director of Engineering",
   description:
-    "Founder & CEO of SKARION and Director of Engineering at SKARION Engineering. Engineering leader building companies at the intersection of technical delivery, workforce development, and scalable global talent.",
+    "Founder & CEO of SKARION and Director of Engineering at SKARION Engineering.",
   keywords: [
     "Abdullah Al Saki",
     "SKARION",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Abdullah Al Saki | Founder & Director of Engineering",
-    description: "Building SKARION — a career development platform for STEM professionals.",
+    description: "Founder & CEO of SKARION and Director of Engineering at SKARION Engineering.",
     type: "website",
   },
 };
