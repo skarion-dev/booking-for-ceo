@@ -377,8 +377,8 @@ export function PublicBookingPage() {
         )}
 
         <Card className="overflow-hidden border-slate-1">
-          <CardHeader className="border-b border-slate-200 px-6 md:px-8">
-            <CardTitle className="text-2xl text-slate-950">
+          <CardHeader className="border-b border-slate-200 px-4 sm:px-6 md:px-8">
+            <CardTitle className="text-xl sm:text-2xl text-slate-950">
               Skarion Consultation Call
             </CardTitle>
             <CardDescription className="text-sm text-slate-600">
@@ -389,8 +389,8 @@ export function PublicBookingPage() {
                   : "There are no open slots right now. Please check back soon."}
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-8 px-6 py-6 md:px-8 md:py-8">
-            <div className="grid gap-8 xl:grid-cols-[minmax(340px,420px)_1fr]">
+          <CardContent className="space-y-6 px-3 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8">
+            <div className="grid gap-6 xl:grid-cols-[minmax(300px,420px)_1fr]">
               <section className="space-y-5">
                 <div className="rounded-3xl border border-slate-200 bg-slate-50/80 p-4 shadow-inner shadow-slate-100">
                   <Calendar
@@ -409,7 +409,7 @@ export function PublicBookingPage() {
                     disabled={(date: Date | undefined) =>
                       !availableDateSet.has(format(date as Date, "yyyy-MM-dd"))
                     }
-                    className="w-full rounded-[1.75rem] border border-slate-200/80 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] p-5 [--cell-size:2.8rem] md:[--cell-size:3.1rem] shadow-[0_18px_45px_-24px_rgba(15,23,42,0.12)]"
+                    className="w-full rounded-[1.75rem] border border-slate-200/80 bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)] p-2 sm:p-4 [--cell-size:2.4rem] sm:[--cell-size:2.8rem] md:[--cell-size:3.1rem] shadow-[0_18px_45px_-24px_rgba(15,23,42,0.12)]"
                   />
 
                   {form.formState.errors.slotDate && (
@@ -427,7 +427,7 @@ export function PublicBookingPage() {
                       : "border-slate-200"
                   )}
                 >
-                  <div className="flex flex-col justify-between gap-3">
+                  <div className="flex flex-col gap-3">
                     <div>
                       <Label className="text-sm font-medium text-slate-900">
                         Available times
@@ -438,7 +438,7 @@ export function PublicBookingPage() {
                           : "Select a date to see times"}
                       </p>
                     </div>
-                    <div className="shrink-0 w-full sm:w-[240px] mt-4">
+                    <div className="w-full mt-1">
                       <Select value={selectedTimezone} onValueChange={setSelectedTimezone}>
                         <SelectTrigger className="h-9 w-full bg-slate-50">
                           <SelectValue placeholder="Select timezone" />
@@ -454,7 +454,7 @@ export function PublicBookingPage() {
                     </div>
                   </div>
 
-                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <div className="mt-4 grid grid-cols-2 gap-2 sm:gap-3">
                     {selectedDay?.slots.length ? (
                       selectedDay.slots.map((slot) => (
                         <Button
@@ -462,7 +462,7 @@ export function PublicBookingPage() {
                           type="button"
                           variant={selectedSlot === slot.value ? "default" : "outline"}
                           className={cn(
-                            "h-auto min-h-16 justify-start rounded-2xl whitespace-normal border px-4 py-4 text-left text-sm font-medium transition-all",
+                            "h-auto min-h-[3.25rem] justify-start rounded-2xl whitespace-normal border px-3 py-3 sm:px-4 sm:py-4 text-left text-xs sm:text-sm font-medium transition-all",
                             selectedSlot === slot.value
                               ? "border-slate-900 bg-slate-900 text-white shadow-lg shadow-slate-300"
                               : "border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50",
@@ -477,7 +477,7 @@ export function PublicBookingPage() {
                         </Button>
                       ))
                     ) : (
-                      <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-5 text-sm text-slate-500 sm:col-span-2">
+                      <div className="col-span-2 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 sm:p-5 text-sm text-slate-500">
                         {selectedDate
                           ? "No times are left on this day."
                           : "Choose a date to see available times."}
@@ -487,7 +487,7 @@ export function PublicBookingPage() {
                 </div>
               </section>
 
-              <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm md:p-6">
+              <section className="rounded-3xl border border-slate-200 bg-white p-4 sm:p-5 shadow-sm md:p-6">
                 <div className="mb-6 space-y-2">
                   <h2 className="text-xl font-semibold text-slate-950">
                     Your details
@@ -498,7 +498,7 @@ export function PublicBookingPage() {
                 </div>
 
                 <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-5">
                     <div className="grid gap-5 md:grid-cols-2">
                       <FormField
                         control={form.control}
@@ -673,13 +673,13 @@ export function PublicBookingPage() {
                       )}
                     />
 
-                    <div className="flex flex-col gap-3 border-t border-slate-200 pt-5 sm:flex-row sm:items-center sm:justify-between">
-                      <div className="text-sm text-slate-500">
+                    <div className="flex flex-col gap-3 border-t border-slate-200 pt-4 sm:pt-5 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="text-xs sm:text-sm text-slate-500">
                         Confirmation and calendar details will be sent after booking.
                       </div>
                       <Button
                         type="submit"
-                        className="h-12 w-full rounded-2xl px-6 text-base font-semibold sm:w-auto"
+                        className="h-11 sm:h-12 w-full rounded-2xl px-6 text-sm sm:text-base font-semibold sm:w-auto"
                         disabled={
                           submitting || loadingAvailability || !availableDays.length
                         }
