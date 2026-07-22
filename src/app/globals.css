@@ -1,26 +1,458 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
+/* Tell Tailwind v4 to use .dark class (controlled by next-themes) instead of prefers-color-scheme */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Light Editorial Theme (primary) ───────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FAF9F6;
+  --foreground: #111111;
+  --muted: #F4F3EF;
+  --border: #E5E5E0;
+  --accent: #0057FF;
+  --accent-light: #EBF0FF;
+  --muted-foreground: #888880;
+  --card: #FFFFFF;
+  --card-border: #E5E5E0;
+  --popover: #FFFFFF;
+  --popover-foreground: #111111;
+  --primary: #111111;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F4F3EF;
+  --secondary-foreground: #111111;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --input: #E5E5E0;
+  --ring: #0057FF;
+  --radius: 0.625rem;
 }
+
+.dark {
+  --background: #050508;
+  --foreground: #f0f0f5;
+  --muted: #111118;
+  --border: #1e1e2a;
+  --accent: #4d94ff;
+  --accent-light: #0d1a30;
+  --muted-foreground: #8888aa;
+  --card: #0d0d14;
+  --card-border: #1e1e2a;
+  --popover: #0d0d14;
+  --popover-foreground: #f0f0f5;
+  --primary: #f0f0f5;
+  --primary-foreground: #050508;
+  --secondary: #111118;
+  --secondary-foreground: #f0f0f5;
+  --destructive: #7f1d1d;
+  --destructive-foreground: #f0f0f5;
+  --input: #1e1e2a;
+  --ring: #4d94ff;
+  --radius: 0.625rem;
+}
+
+/* Skarion booking widget theme (Light by default, exactly as in Skarion) */
+.skarion-theme {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.141 0.005 285.823);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.21 0.006 285.885);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.21 0.006 285.885);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.705 0.015 286.067);
+  color: var(--foreground);
+}
+
+/* ── Booking widget: strip Card white bg, border, shadow ── */
+.booking-no-border {
+  background: transparent;
+}
+
+.booking-no-border [data-slot="card"] {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Booking widget: full dark mode pass ── */
+
+/* All white panel backgrounds (Card, section bg-white, div bg-white) */
+.dark .booking-no-border [data-slot="card"],
+.dark .booking-no-border section,
+.dark .booking-no-border .bg-white,
+.dark .booking-no-border [class*="bg-white"] {
+  background: #141414 !important;
+  border-color: #2a2a2a !important;
+}
+
+/* Slate backgrounds (calendar container, time slot empty state) */
+.dark .booking-no-border [class*="bg-slate-50"],
+.dark .booking-no-border [class*="bg-slate-100"],
+.dark .booking-no-border [class*="shadow-slate"] {
+  background: #1a1a1a !important;
+  box-shadow: none !important;
+}
+
+/* Calendar gradient background */
+.dark .booking-no-border [class*="bg-[linear-gradient"] {
+  background: #1a1a1a !important;
+}
+
+/* Headings and dark text */
+.dark .booking-no-border [data-slot="card-title"],
+.dark .booking-no-border h2,
+.dark .booking-no-border [class*="text-slate-9"],
+.dark .booking-no-border .text-slate-950 {
+  color: #f0f0f0 !important;
+}
+
+/* Card description and medium text */
+.dark .booking-no-border [data-slot="card-description"],
+.dark .booking-no-border [class*="text-slate-6"],
+.dark .booking-no-border [class*="text-slate-5"],
+.dark .booking-no-border .text-slate-500,
+.dark .booking-no-border .text-slate-600 {
+  color: #909090 !important;
+}
+
+/* Slightly lighter text */
+.dark .booking-no-border [class*="text-slate-7"],
+.dark .booking-no-border .text-slate-700,
+.dark .booking-no-border [class*="text-slate-4"],
+.dark .booking-no-border .text-slate-400 {
+  color: #b0b0b0 !important;
+}
+
+/* Labels */
+.dark .booking-no-border label {
+  color: #cccccc !important;
+}
+
+/* All borders */
+.dark .booking-no-border [class*="border-slate-2"],
+.dark .booking-no-border .border-slate-200,
+.dark .booking-no-border [class*="border-b"] {
+  border-color: #2a2a2a !important;
+}
+
+/* Inputs and textarea */
+.dark .booking-no-border input,
+.dark .booking-no-border textarea {
+  background: #1e1e1e !important;
+  border-color: #333 !important;
+  color: #f0f0f0 !important;
+}
+
+.dark .booking-no-border input::placeholder,
+.dark .booking-no-border textarea::placeholder {
+  color: #666 !important;
+}
+
+/* Select trigger */
+.dark .booking-no-border [data-slot="select-trigger"],
+.dark .booking-no-border [role="combobox"] {
+  background: #1e1e1e !important;
+  border-color: #333 !important;
+  color: #f0f0f0 !important;
+}
+
+/* Unselected time slot buttons */
+.dark .booking-no-border button[class*="border-slate-2"],
+.dark .booking-no-border button[class*="bg-white"],
+.dark .booking-no-border button[class*="text-slate-7"] {
+  background: #1e1e1e !important;
+  border-color: #333 !important;
+  color: #d0d0d0 !important;
+}
+
+/* Resume upload drop zone */
+.dark .booking-no-border [class*="border-dashed"] {
+  background: #1a1a1a !important;
+  border-color: #3a3a3a !important;
+}
+
+/* Card header divider */
+.dark .booking-no-border [data-slot="card-header"] {
+  border-bottom-color: #2a2a2a !important;
+}
+
+/* ── Calendar dark mode: all text white via inheritance ── */
+/* Set base color on the calendar root — everything inherits it */
+.dark .booking-no-border [data-slot="calendar"] {
+  color: #e0e0e0 !important;
+}
+
+/* Day number buttons inherit the base color */
+.dark .booking-no-border [data-slot="calendar"] button {
+  color: inherit !important;
+}
+
+/* Outside / disabled days — visually muted */
+.dark .booking-no-border [data-slot="calendar"] button[disabled],
+.dark .booking-no-border [data-slot="calendar"] [aria-disabled="true"] button {
+  color: #3a3a3a !important;
+  opacity: 1 !important;
+}
+
+/* Today highlight — bg-accent is a literal class only on the today wrapper div */
+.dark .booking-no-border [data-slot="calendar"] [class~="bg-accent"] {
+  background: #2a2a2a !important;
+}
+
+.dark .booking-no-border [data-slot="calendar"] [class~="bg-accent"] button {
+  color: #ffffff !important;
+}
+
 
 @theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-space-grotesk), var(--font-inter), sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #ffffff;
   }
 }
 
-body {
+/* ─── Custom Scrollbar ───────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+/* ─── Editorial Utilities ────────────────────────────────────────────────────── */
+
+/* Section index badge: (01) ABOUT */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* Horizontal divider rule */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+}
+
+/* Tag pill chip */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.875rem;
+  border-radius: 9999px;
+  border: 1px solid #E0E0DA;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #333333;
+  background: #FFFFFF;
+  transition: all 0.18s ease;
+  cursor: default;
+}
+
+.dark .tag-pill {
+  border-color: #333333;
+  color: #E0E0DA;
+  background: #1A1A1A;
+}
+
+.tag-pill:hover {
+  background: #111111;
+  color: #FFFFFF;
+  border-color: #111111;
+}
+
+.dark .tag-pill:hover {
+  background: #F0F0F0;
+  color: #111111;
+  border-color: #F0F0F0;
+}
+
+/* Dark pill primary CTA */
+.btn-dark-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.625rem;
+  border-radius: 9999px;
+  background: #111111;
+  color: #FFFFFF;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dark .btn-dark-pill {
+  background: #F5F5F5;
+  color: #111111;
+}
+
+.btn-dark-pill:hover {
+  opacity: 0.82;
+  transform: translateY(-1px);
+}
+
+/* Border pill secondary CTA */
+.btn-border-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.625rem;
+  border-radius: 9999px;
+  border: 1.5px solid #D4D4D4;
+  background: transparent;
+  color: #111111;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.dark .btn-border-pill {
+  border-color: #4A4A4A;
+  color: #F5F5F5;
+}
+
+.btn-border-pill:hover {
+  background: #111111;
+  color: #FFFFFF;
+  border-color: #111111;
+  transform: translateY(-1px);
+}
+
+.dark .btn-border-pill:hover {
+  background: #F5F5F5;
+  color: #111111;
+  border-color: #F5F5F5;
+}
+
+/* Stat card border box */
+.stat-card {
+  border: 1px solid #E5E5E0;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  background: #FFFFFF;
+}
+
+.dark .stat-card {
+  border-color: #2A2A2A;
+  background: #111111;
+}
+
+/* Experience row */
+.experience-row {
+  border-bottom: 1px solid #E5E5E0;
+  padding: 2rem 0;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.dark .experience-row {
+  border-bottom-color: #2A2A2A;
+}
+
+@media (max-width: 640px) {
+  .experience-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+/* Gradient text (kept for accent use) */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow (for image) */
+.image-glow {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* Trust strip item */
+.trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #888880;
+  white-space: nowrap;
+}
+
+.dark .trust-item {
+  color: #666660;
 }
